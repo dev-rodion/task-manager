@@ -12,7 +12,7 @@ return new class extends Migration {
                 $table->id();
                 $table->string('title');
                 $table->text('description');
-                $table->enum('status', ['new', 'in progress', 'completed'])->default('new');
+                $table->enum('status', ['todo', 'in_progress', 'completed'])->default('todo');
                 $table->integer('priority')->default(1);
                 $table->date('due_date');
                 $table->foreignId('user_id')->constrained()->onDelete('cascade');
