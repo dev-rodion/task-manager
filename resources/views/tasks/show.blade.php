@@ -30,7 +30,7 @@
                 @endphp
                 <div class="flex items-center justify-between">
                     <h1 class="font-bold text-2xl text-gray-800">{{ $task->title }}</h1>
-                    <span class="flex items-center px-3 py-1 text-sm font-semibold rounded {{ $status_classes }}">
+                    <span class="flex items-center px-3 py-1 text-sm font-semibold rounded text-nowrap {{ $status_classes }}">
                         {{ $status_icon }} {{ $status_text }}
                     </span>
                 </div>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="mt-6">
-            <a href="{{ route('tasks') }}" class="text-gray-600 hover:text-gray-800 flex items-center">
+            <a href="{{ route('tasks.index') }}" class="text-gray-600 hover:text-gray-800 flex items-center">
                 &larr; Back to All Tasks
             </a>
         </div>

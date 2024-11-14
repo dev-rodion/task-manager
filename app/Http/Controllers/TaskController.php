@@ -18,10 +18,23 @@ class TaskController extends Controller
 
     public function create()
     {
+        return view('tasks.create');
     }
 
     public function store()
     {
+        $validatedData = request()->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'due_date' => 'required|date',
+            'status' => 'required|string|in:todo,in_progress,completed',
+        ]);
+
+        $validatedData['description'] = $validatedData['description'] ?? '';
+        $validatedData['user_id'] = auth()->id() ?? 1;
+        Task::create($validatedData);
+
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
     public function show($id)
@@ -64,6 +77,6 @@ class TaskController extends Controller
 
         $task->delete();
 
-        return redirect()->route('tasks')->with('success', 'Task deleted successfully.');
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 }
