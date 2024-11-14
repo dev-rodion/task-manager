@@ -3,7 +3,6 @@
 @section('title', 'Tasks')
 
 @section('content')
-    <h1 class="font-bold text-3xl mb-8">All Tasks</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($tasks as $task)
             @php
@@ -28,11 +27,15 @@
                         break;
                 }
             @endphp
-            <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <div
+                class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 <div class="p-6 flex-1">
                     <div class="flex items-center justify-between">
-                        <h2 class="font-semibold text-xl text-gray-800">{{ $task->title }}</h2>
-                        <span class="flex items-center px-2 py-1 text-xs font-semibold rounded {{ $status_classes }} text-nowrap">
+                        <a href="{{ route('tasks.show', $task->id) }}" class="text-gray-800 hover:text-blue-600">
+                            <h2 class="font-semibold text-xl text-inherit">{{ $task->title }}</h2>
+                        </a>
+                        <span
+                            class="flex items-center px-2 py-1 text-xs font-semibold rounded {{ $status_classes }} text-nowrap">
                             {{ $status_icon }} {{ $status_text }}
                         </span>
                     </div>
